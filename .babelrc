@@ -1,0 +1,24 @@
+{
+  "sourceMaps": true,
+  "presets": ["next/babel"],
+  "plugins": [
+    [
+      "emotion",
+      {
+        "sourceMap": true,
+        "autoLabel": true,
+        "labelFormat": "[local]",
+        "cssPropOptimization": false
+      }
+    ],
+    [
+      "module-resolver",
+      {
+        "root": ["./"],
+        "alias": {
+          "@": "./src"
+        }
+      }
+    ]
+  ]
+}
