@@ -3,13 +3,17 @@ import { Icon, Button } from "./styles";
 
 export type Conversion = {
   rate: number;
-  origin: string;
-  target: string;
+  originSymbol: string;
+  targetSymbol: string;
 };
 
-export const Conversion: FC<Conversion> = ({ rate, origin, target }) => (
+export const Conversion: FC<Conversion> = ({
+  rate,
+  originSymbol,
+  targetSymbol
+}) => (
   <Button>
-    <Icon /> {target}1 = {origin}
+    <Icon /> {originSymbol}1 = {targetSymbol}
     {rate}
   </Button>
 );
