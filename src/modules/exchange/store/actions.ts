@@ -1,16 +1,21 @@
 import {
   ActionType,
-  SetRate,
-  SetOriginAmount,
+  ChangedSymbol,
   SetTargetAmount,
-  SetOriginCurrency,
-  SetTargetCurrency,
-  OriginAmountChanged,
-  TargetAmountChanged
+  SetOriginSymbol,
+  SetTargetSymbol,
+  ChangedOriginAmount,
+  ChangedTargetAmount,
+  SetOriginAmount,
+  SetDirection
 } from "./models";
 
-export const setRate = (payload: number): SetRate => ({
-  type: ActionType.SET_RATE,
+export const changedSymbol = (): ChangedSymbol => ({
+  type: ActionType.CHANGED_SYMBOL
+});
+
+export const setDirection = (payload: boolean): SetDirection => ({
+  type: ActionType.SET_DIRECTION,
   payload
 });
 
@@ -24,22 +29,22 @@ export const setTargetAmount = (payload: number): SetTargetAmount => ({
   payload
 });
 
-export const originAmountChanged = (payload: number): OriginAmountChanged => ({
-  type: ActionType.ORIGIN_AMOUNT_CHANGED,
+export const changedOriginAmount = (payload: number): ChangedOriginAmount => ({
+  type: ActionType.CHANGED_ORIGIN_AMOUNT,
   payload
 });
 
-export const targetAmountChanged = (payload: number): TargetAmountChanged => ({
-  type: ActionType.TARGET_AMOUNT_CHANGED,
+export const changedTargetAmount = (payload: number): ChangedTargetAmount => ({
+  type: ActionType.CHANGED_TARGET_AMOUNT,
   payload
 });
 
-export const setOriginCurrency = (payload: string): SetOriginCurrency => ({
-  type: ActionType.SET_ORIGIN_CX,
+export const setOriginSymbol = (payload: string): SetOriginSymbol => ({
+  type: ActionType.SET_ORIGIN_SYMBOL,
   payload
 });
 
-export const setTargetCurrency = (payload: string): SetTargetCurrency => ({
-  type: ActionType.SET_TARGET_CX,
+export const setTargetSymbol = (payload: string): SetTargetSymbol => ({
+  type: ActionType.SET_TARGET_SYMBOL,
   payload
 });
