@@ -1,6 +1,6 @@
 import styled from "@emotion/styled";
 
-export const Button = styled.button`
+export const ExchangeButton = styled.button`
   color: white;
   font-size: 14px;
   font-weight: 500;

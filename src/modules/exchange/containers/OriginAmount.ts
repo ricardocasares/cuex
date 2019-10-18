@@ -2,15 +2,20 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { CuexState } from "@/store/models";
 import { Quantity } from "@/components/Quantity";
-import { changedOriginAmount, setDirection } from "../store/actions";
+import {
+  changedOriginAmount as onChange,
+  setDirection as onFocus
+} from "../store/actions";
 
-const mapStateToProps = ({ exchange: { originAmount } }: CuexState) => ({
+const mapStateToProps = ({
+  exchange: { originAmount: amount }
+}: CuexState) => ({
   focused: true,
-  amount: originAmount
+  amount
 });
 
-const actions = { onFocus: setDirection, onChange: changedOriginAmount };
-const mapDispatchToProps = dispatch => bindActionCreators(actions, dispatch);
+const mapDispatchToProps = dispatch =>
+  bindActionCreators({ onFocus, onChange }, dispatch);
 
 export const OriginAmount = connect(
   mapStateToProps,

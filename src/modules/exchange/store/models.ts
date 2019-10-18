@@ -11,7 +11,10 @@ export type State = {
 
 export enum ActionType {
   SET_DIRECTION = "@cuex/exchange/SET_DIRECTION",
-  CHANGED_SYMBOL = "@cuex/exchange/CHANGED_SYMBOL",
+  GET_SYMBOL = "@cuex/exchange/GET_SYMBOL",
+  SET_SYMBOL = "@cuex/exchange/SET_SYMBOL",
+  GET_ORIGIN_SYMBOL = "@cuex/exchange/GET_ORIGIN_SYMBOL",
+  GET_TARGET_SYMBOL = "@cuex/exchange/GET_TARGET_SYMBOL",
   SET_ORIGIN_SYMBOL = "@cuex/exchange/SET_ORIGIN_SYMBOL",
   SET_TARGET_SYMBOL = "@cuex/exchange/SET_TARGET_SYMBOL",
   SET_ORIGIN_AMOUNT = "@cuex/exchange/SET_ORIGIN_AMOUNT",
@@ -20,11 +23,28 @@ export enum ActionType {
   CHANGED_TARGET_AMOUNT = "@cuex/exchange/CHANGED_TARGET_AMOUNT",
   FETCH_EXCHANGE_RATE = "@cuex/exchange/FETCH_EXCHANGE_RATE",
   SET_EXCHANGE_RATE = "@cuex/exchange/SET_EXCHANGE_RATE",
-  ERROR_EXCHAGE_RATE = "@cuex/exchange/ERROR_EXCHAGE_RATE"
+  FETCH_ERROR_EXCHAGE_RATE = "@cuex/exchange/FETCH_ERROR_EXCHAGE_RATE",
+  START_RATE_INTERVAL = "@cuex/exchange/START_RATE_INTERVAL"
 }
 
-export interface ChangedSymbol extends Action<ActionType.CHANGED_SYMBOL> {}
+// EXTERNAL SYMBOL ACTIONS
+export interface GetSymbol extends Action<ActionType.GET_SYMBOL> {}
+export interface SetSymbol extends Action<ActionType.SET_SYMBOL> {
+  readonly payload: string;
+}
 
+// INTERNAL SYMBOL ACTIONS
+export interface GetOriginSymbol extends Action<ActionType.GET_ORIGIN_SYMBOL> {}
+export interface GetTargetSymbol extends Action<ActionType.GET_TARGET_SYMBOL> {}
+export interface SetOriginSymbol extends Action<ActionType.SET_ORIGIN_SYMBOL> {
+  readonly payload: string;
+}
+
+export interface SetTargetSymbol extends Action<ActionType.SET_TARGET_SYMBOL> {
+  readonly payload: string;
+}
+
+// EXCHANGE DIRECTION ACTION
 export interface SetDirection extends Action<ActionType.SET_DIRECTION> {
   readonly payload: boolean;
 }
@@ -51,19 +71,19 @@ export interface ChangedTargetAmount
   readonly payload: number;
 }
 
-export interface SetOriginSymbol extends Action<ActionType.SET_ORIGIN_SYMBOL> {
-  readonly payload: string;
-}
-
-export interface SetTargetSymbol extends Action<ActionType.SET_TARGET_SYMBOL> {
-  readonly payload: string;
-}
+export interface StartRateInterval
+  extends Action<ActionType.START_RATE_INTERVAL> {}
 
 export type Actions =
+  | GetSymbol
+  | SetSymbol
   | SetDirection
   | SetExchangeRate
   | SetOriginAmount
   | SetTargetAmount
   | SetOriginSymbol
+  | GetOriginSymbol
   | SetTargetSymbol
-  | ChangedOriginAmount;
+  | GetTargetSymbol
+  | ChangedOriginAmount
+  | ChangedTargetAmount;

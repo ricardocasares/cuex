@@ -9,7 +9,12 @@ import {
 } from "redux-saga/effects";
 import { CuexState } from "@/store/models";
 import { ActionType, SetExchangeRate, SetTargetAmount } from "./models";
-import { setTargetAmount, setOriginAmount } from "./actions";
+import {
+  setTargetAmount,
+  setOriginAmount,
+  setOriginSymbol,
+  setTargetSymbol
+} from "./actions";
 import { getExchangeRate } from "../api";
 
 function* watchChangedOriginAmount() {
@@ -33,9 +38,12 @@ function* watchChangedTargetAmount() {
 }
 
 function* watchChangedSymbol() {
-  yield takeLatest(ActionType.CHANGED_SYMBOL, function*() {
-    yield put({ type: ActionType.FETCH_EXCHANGE_RATE });
-  });
+  yield takeLatest(
+    [ActionType.SET_ORIGIN_SYMBOL, ActionType.SET_TARGET_SYMBOL],
+    function*() {
+      yield put({ type: ActionType.FETCH_EXCHANGE_RATE });
+    }
+  );
 }
 
 function* watchExchangeRateRequest() {
@@ -63,19 +71,37 @@ function* watchExchangeRateUpdate() {
   });
 }
 
-function* exchangeRateRequestInterval() {
-  yield take("INTERVAL");
+function* exchangeRateInterval() {
+  yield take(ActionType.START_RATE_INTERVAL);
   while (true) {
     yield put({ type: ActionType.FETCH_EXCHANGE_RATE });
     yield delay(5000);
   }
 }
 
+function* watchGetOriginSymbol() {
+  yield takeLatest(ActionType.GET_ORIGIN_SYMBOL, function*() {
+    yield put({ type: ActionType.GET_SYMBOL });
+    const { payload } = yield take(ActionType.SET_SYMBOL);
+    yield put(setOriginSymbol(payload));
+  });
+}
+
+function* watchGetTargetSymbol() {
+  yield takeLatest(ActionType.GET_TARGET_SYMBOL, function*() {
+    yield put({ type: ActionType.GET_SYMBOL });
+    const { payload } = yield take(ActionType.SET_SYMBOL);
+    yield put(setTargetSymbol(payload));
+  });
+}
+
 export const sagas = [
   fork(watchChangedSymbol),
+  fork(watchGetOriginSymbol),
+  fork(watchGetTargetSymbol),
   fork(watchExchangeRateUpdate),
   fork(watchExchangeRateRequest),
   fork(watchChangedOriginAmount),
   fork(watchChangedTargetAmount),
-  fork(exchangeRateRequestInterval)
+  fork(exchangeRateInterval)
 ];
