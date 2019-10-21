@@ -1,0 +1,61 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Balance handles expressions 1`] = `
+.emotion-0 {
+  font-size: 14px;
+  color: #fd1f8f;
+}
+
+<p
+  className="emotion-0 emotion-1"
+>
+  Balance: 
+  USD
+  120.52
+</p>
+`;
+
+exports[`Balance handles floats 1`] = `
+.emotion-0 {
+  font-size: 14px;
+  color: #777;
+}
+
+<p
+  className="emotion-0 emotion-1"
+>
+  Balance: 
+  USD
+  120.52
+</p>
+`;
+
+exports[`Balance handles integers 1`] = `
+.emotion-0 {
+  font-size: 14px;
+  color: #777;
+}
+
+<p
+  className="emotion-0 emotion-1"
+>
+  Balance: 
+  USD
+  120
+</p>
+`;
+
+exports[`Balance renders styles when overdraft 1`] = `
+.emotion-0 {
+  font-size: 14px;
+  color: #fd1f8f;
+}
+
+<p
+  className="emotion-0 emotion-1"
+>
+  Balance: 
+  USD
+  120.52
+</p>
+`;

@@ -74,6 +74,9 @@ export interface ChangedTargetAmount
 export interface StartRateInterval
   extends Action<ActionType.START_RATE_INTERVAL> {}
 
+export interface FetchExchangeRate
+  extends Action<ActionType.FETCH_EXCHANGE_RATE> {}
+
 export type Actions =
   | GetSymbol
   | SetSymbol
@@ -86,4 +89,5 @@ export type Actions =
   | SetTargetSymbol
   | GetTargetSymbol
   | ChangedOriginAmount
-  | ChangedTargetAmount;
+  | ChangedTargetAmount
+  | FetchExchangeRate;

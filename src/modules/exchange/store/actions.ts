@@ -11,7 +11,9 @@ import {
   GetTargetSymbol,
   ChangedTargetAmount,
   ChangedOriginAmount,
-  StartRateInterval
+  StartRateInterval,
+  FetchExchangeRate,
+  SetExchangeRate
 } from "./models";
 
 export const getSymbol = (): GetSymbol => ({
@@ -68,4 +70,13 @@ export const changedTargetAmount = (payload: number): ChangedTargetAmount => ({
 
 export const startRateInterval = (): StartRateInterval => ({
   type: ActionType.START_RATE_INTERVAL
+});
+
+export const fetchExchangeRate = (): FetchExchangeRate => ({
+  type: ActionType.FETCH_EXCHANGE_RATE
+});
+
+export const setExchangeRate = (payload: number): SetExchangeRate => ({
+  type: ActionType.SET_EXCHANGE_RATE,
+  payload
 });

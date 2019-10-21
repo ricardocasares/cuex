@@ -3,4 +3,4 @@ function random() {
   return rates[Math.floor(Math.random() * rates.length)];
 }
 
-export const getExchangeRate = async (base: string, target: string) => random();
+export const getExchangeRate = async (base: string, target: string) => 0.9;
