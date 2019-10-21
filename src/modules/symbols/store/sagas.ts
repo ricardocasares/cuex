@@ -3,27 +3,33 @@ import { ActionType } from "./models";
 import { setSymbols, showSymbols } from "./actions";
 import { getSymbols } from "../api";
 
-function* watchFetchSymbols() {
-  yield takeLatest(ActionType.FETCH_SYMBOLS, function*() {
-    const symbols = yield call(getSymbols);
-    yield put(setSymbols(symbols));
-  });
+export function* runSetSymbols() {
+  const symbols = yield call(getSymbols);
+  yield put(setSymbols(symbols));
 }
 
-function* watchRequestSymbols() {
-  yield takeLatest(ActionType.REQUEST_SYMBOLS, function*() {
-    yield put(showSymbols(true));
-  });
+export function* runShowSymbols() {
+  yield put(showSymbols(true));
 }
 
-function* watchSelectSymbol() {
-  yield takeLatest(ActionType.SELECT_SYMBOL, function*() {
-    yield put(showSymbols(false));
-  });
+export function* runHideSymbols() {
+  yield put(showSymbols(false));
+}
+
+export function* watchFetchSymbols() {
+  yield takeLatest(ActionType.FETCH_SYMBOLS, runSetSymbols);
+}
+
+export function* watchRequestSymbols() {
+  yield takeLatest(ActionType.REQUEST_SYMBOLS, runShowSymbols);
+}
+
+export function* watchSelectSymbol() {
+  yield takeLatest(ActionType.SELECT_SYMBOL, runHideSymbols);
 }
 
 export const sagas = [
-  fork(watchFetchSymbols),
-  fork(watchSelectSymbol),
-  fork(watchRequestSymbols)
-];
+  watchFetchSymbols,
+  watchSelectSymbol,
+  watchRequestSymbols
+].map(fork);

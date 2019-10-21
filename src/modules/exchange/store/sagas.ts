@@ -127,12 +127,12 @@ export function* exchangeRateInterval() {
 }
 
 export const sagas = [
-  fork(watchChangedSymbol),
-  fork(exchangeRateInterval),
-  fork(watchGetOriginSymbol),
-  fork(watchGetTargetSymbol),
-  fork(watchExchangeRateUpdate),
-  fork(watchExchangeRateRequest),
-  fork(watchChangedOriginAmount),
-  fork(watchChangedTargetAmount)
-];
+  watchChangedSymbol,
+  exchangeRateInterval,
+  watchGetOriginSymbol,
+  watchGetTargetSymbol,
+  watchExchangeRateUpdate,
+  watchExchangeRateRequest,
+  watchChangedOriginAmount,
+  watchChangedTargetAmount
+].map(fork);
