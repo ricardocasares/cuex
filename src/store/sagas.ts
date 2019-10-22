@@ -1,5 +1,6 @@
 import { all, put, take, fork, takeLatest } from "redux-saga/effects";
 import * as Symbols from "@/modules/symbols/store";
+import * as Accounts from "@/modules/accounts/store";
 import * as Exchange from "@/modules/exchange/store";
 
 function* init() {
@@ -22,8 +23,22 @@ function* mapSelectSymbol() {
   });
 }
 
-const mappings = [fork(mapGetSymbol), fork(mapSelectSymbol)];
+function* mapExecuteExchange() {
+  yield takeLatest(Exchange.ActionType.EXECUTE_EXCHANGE, function*(
+    action: Exchange.ExecuteExchange
+  ) {
+    yield put(Accounts.startTransaction(action.payload));
+  });
+}
+
+const mappings = [mapGetSymbol, mapSelectSymbol, mapExecuteExchange].map(fork);
 
 export function* sagas() {
-  yield all([fork(init), ...mappings, ...Symbols.sagas, ...Exchange.sagas]);
+  yield all([
+    fork(init),
+    ...mappings,
+    ...Accounts.sagas,
+    ...Symbols.sagas,
+    ...Exchange.sagas
+  ]);
 }

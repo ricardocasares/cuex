@@ -13,6 +13,8 @@ export enum ActionType {
   SET_DIRECTION = "@cuex/exchange/SET_DIRECTION",
   GET_SYMBOL = "@cuex/exchange/GET_SYMBOL",
   SET_SYMBOL = "@cuex/exchange/SET_SYMBOL",
+  EXECUTE_EXCHANGE = "@cuex/exchange/EXECUTE_EXCHANGE",
+  REQUEST_EXECUTE_EXCHANGE = "@cuex/exchange/REQUEST_EXECUTE_EXCHANGE",
   GET_ORIGIN_SYMBOL = "@cuex/exchange/GET_ORIGIN_SYMBOL",
   GET_TARGET_SYMBOL = "@cuex/exchange/GET_TARGET_SYMBOL",
   SET_ORIGIN_SYMBOL = "@cuex/exchange/SET_ORIGIN_SYMBOL",
@@ -77,6 +79,13 @@ export interface StartRateInterval
 export interface FetchExchangeRate
   extends Action<ActionType.FETCH_EXCHANGE_RATE> {}
 
+export interface RequestExecuteExchange
+  extends Action<ActionType.REQUEST_EXECUTE_EXCHANGE> {}
+
+export interface ExecuteExchange extends Action<ActionType.EXECUTE_EXCHANGE> {
+  readonly payload: State;
+}
+
 export type Actions =
   | GetSymbol
   | SetSymbol
@@ -88,6 +97,8 @@ export type Actions =
   | GetOriginSymbol
   | SetTargetSymbol
   | GetTargetSymbol
+  | ExecuteExchange
+  | RequestExecuteExchange
   | ChangedOriginAmount
   | ChangedTargetAmount
   | FetchExchangeRate;

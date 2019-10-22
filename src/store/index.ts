@@ -5,10 +5,12 @@ import { reducer } from "./reducer";
 import { CuexState } from "./models";
 import { withDevTools } from "./enhancers";
 import { initial as symbols } from "@/modules/symbols/store";
+import { initial as accounts } from "@/modules/accounts/store";
 import { initial as exchange } from "@/modules/exchange/store";
 
 const initial: CuexState = {
   symbols,
+  accounts,
   exchange
 };
 

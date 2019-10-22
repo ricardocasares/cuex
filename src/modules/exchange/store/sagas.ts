@@ -16,6 +16,7 @@ import {
   setOriginSymbol,
   setTargetSymbol,
   setExchangeRate,
+  executeExchange,
   fetchExchangeRate
 } from "./actions";
 import { getExchangeRate } from "../api";
@@ -39,11 +40,7 @@ export function* runTargetAmountChanged(action: SetTargetAmount) {
   yield put(setOriginAmount(action.payload / rate));
 }
 
-export function* runChangedSymbol() {
-  yield put(fetchExchangeRate());
-}
-
-export function* executeFetchExchangeRate() {
+export function* runFetchExchangeRate() {
   try {
     const exchange = yield select(selector.exchange);
     const payload = yield call(
@@ -60,19 +57,23 @@ export function* executeFetchExchangeRate() {
   }
 }
 
-export function* updateTargetSymbol() {
+export function* runSetTargetSymbol() {
   yield put(getSymbol());
   const { payload } = yield take(ActionType.SET_SYMBOL);
   yield put(setTargetSymbol(payload));
 }
 
-export function* updateOriginSymbol() {
+export function* runSetOriginSymbol() {
   yield put(getSymbol());
   const { payload } = yield take(ActionType.SET_SYMBOL);
   yield put(setOriginSymbol(payload));
 }
 
-export function* updateAmountByDirection() {
+export function* runChangedSymbol() {
+  yield put(fetchExchangeRate());
+}
+
+export function* runSetAmountByDirection() {
   const exchange = yield select(selector.exchange);
 
   if (exchange.direction) {
@@ -82,16 +83,30 @@ export function* updateAmountByDirection() {
   }
 }
 
+export function* runExecuteExchange() {
+  console.log("hey");
+  yield put(executeExchange(yield select(selector.exchange)));
+}
+
+export function* runExchangeRateInterval() {
+  yield take(ActionType.START_RATE_INTERVAL);
+
+  while (true) {
+    yield put(fetchExchangeRate());
+    yield delay(FETCH_RATE_INTERVAL);
+  }
+}
+
 //////////////
 // WATCHERS //
 //////////////
 
-export function* watchChangedOriginAmount() {
-  yield takeEvery(ActionType.CHANGED_ORIGIN_AMOUNT, runOriginAmountChanged);
+export function* watchGetTargetSymbol() {
+  yield takeEvery(ActionType.GET_TARGET_SYMBOL, runSetTargetSymbol);
 }
 
-export function* watchChangedTargetAmount() {
-  yield takeEvery(ActionType.CHANGED_TARGET_AMOUNT, runTargetAmountChanged);
+export function* watchGetOriginSymbol() {
+  yield takeEvery(ActionType.GET_ORIGIN_SYMBOL, runSetOriginSymbol);
 }
 
 export function* watchChangedSymbol() {
@@ -101,38 +116,34 @@ export function* watchChangedSymbol() {
   );
 }
 
+export function* watchChangedOriginAmount() {
+  yield takeEvery(ActionType.CHANGED_ORIGIN_AMOUNT, runOriginAmountChanged);
+}
+
+export function* watchChangedTargetAmount() {
+  yield takeEvery(ActionType.CHANGED_TARGET_AMOUNT, runTargetAmountChanged);
+}
+
 export function* watchExchangeRateRequest() {
-  yield takeLatest(ActionType.FETCH_EXCHANGE_RATE, executeFetchExchangeRate);
+  yield takeLatest(ActionType.FETCH_EXCHANGE_RATE, runFetchExchangeRate);
 }
 
 export function* watchExchangeRateUpdate() {
-  yield takeEvery(ActionType.SET_EXCHANGE_RATE, updateAmountByDirection);
+  yield takeEvery(ActionType.SET_EXCHANGE_RATE, runSetAmountByDirection);
 }
 
-export function* watchGetTargetSymbol() {
-  yield takeEvery(ActionType.GET_TARGET_SYMBOL, updateTargetSymbol);
-}
-
-export function* watchGetOriginSymbol() {
-  yield takeEvery(ActionType.GET_ORIGIN_SYMBOL, updateOriginSymbol);
-}
-
-export function* exchangeRateInterval() {
-  yield take(ActionType.START_RATE_INTERVAL);
-
-  while (true) {
-    yield put(fetchExchangeRate());
-    yield delay(FETCH_RATE_INTERVAL);
-  }
+export function* watchRequestExecuteExchange() {
+  yield takeEvery(ActionType.REQUEST_EXECUTE_EXCHANGE, runExecuteExchange);
 }
 
 export const sagas = [
   watchChangedSymbol,
-  exchangeRateInterval,
   watchGetOriginSymbol,
   watchGetTargetSymbol,
+  runExchangeRateInterval,
   watchExchangeRateUpdate,
   watchExchangeRateRequest,
   watchChangedOriginAmount,
-  watchChangedTargetAmount
+  watchChangedTargetAmount,
+  watchRequestExecuteExchange
 ].map(fork);

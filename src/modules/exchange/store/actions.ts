@@ -9,11 +9,14 @@ import {
   SetOriginAmount,
   GetOriginSymbol,
   GetTargetSymbol,
+  ExecuteExchange,
   ChangedTargetAmount,
   ChangedOriginAmount,
   StartRateInterval,
   FetchExchangeRate,
-  SetExchangeRate
+  SetExchangeRate,
+  State,
+  RequestExecuteExchange
 } from "./models";
 
 export const getSymbol = (): GetSymbol => ({
@@ -79,4 +82,13 @@ export const fetchExchangeRate = (): FetchExchangeRate => ({
 export const setExchangeRate = (payload: number): SetExchangeRate => ({
   type: ActionType.SET_EXCHANGE_RATE,
   payload
+});
+
+export const executeExchange = (payload: State): ExecuteExchange => ({
+  type: ActionType.EXECUTE_EXCHANGE,
+  payload
+});
+
+export const requestExecuteExchange = (): RequestExecuteExchange => ({
+  type: ActionType.REQUEST_EXECUTE_EXCHANGE
 });

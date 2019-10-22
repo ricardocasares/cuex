@@ -10,4 +10,9 @@ export const ExchangeButton = styled.button`
   border-radius: 50px;
   box-shadow: 0 10px 10px #fd1f8f25;
   width: 100%;
+
+  &[disabled] {
+    opacity: 0.25;
+    cursor: not-allowed;
+  }
 `;
