@@ -51,8 +51,7 @@ export function* runFetchExchangeRate() {
 
     yield put(setExchangeRate(payload));
   } catch (err) {
-    // @TODO
-    // Use AbortController for fetch cancellation
+    // @TODO Use AbortController for cancellation
     console.warn("executeFetchExchangeRate unhandled");
   }
 }

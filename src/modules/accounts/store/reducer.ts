@@ -11,8 +11,7 @@ export const initial: State = {
 export const reducer: Reducer<State, Actions> = (state = initial, action) => {
   switch (action.type) {
     case ActionType.TX_APPLY:
-      // @TODO
-      // Move to saga
+      // @TODO Move logic to saga
 
       const {
         originAmount,

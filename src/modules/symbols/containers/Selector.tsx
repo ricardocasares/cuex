@@ -5,7 +5,7 @@ import { is } from "@/css/helpers";
 import { CuexState } from "@/store/models";
 import { selectSymbol as onClick } from "../store/actions";
 
-// TODO: move to components
+// @TODO Move to components
 export type CurrencySelector = {
   show: boolean;
 };
