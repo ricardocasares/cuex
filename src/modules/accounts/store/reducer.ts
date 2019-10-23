@@ -2,10 +2,9 @@ import { Reducer } from "redux";
 import { State, Actions, ActionType } from "./models";
 
 export const initial: State = {
-  USD: 10,
-  BTC: 0.232,
-  GBP: 45.54,
-  EUR: 20
+  USD: 1000,
+  GBP: 1000,
+  EUR: 1000
 };
 
 export const reducer: Reducer<State, Actions> = (state = initial, action) => {
