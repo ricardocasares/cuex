@@ -1,4 +1,4 @@
-import React, { FC } from "react";
+import React, { useRef, useEffect, FC } from "react";
 import { ArrowLeft } from "react-feather";
 import {
   List,
@@ -27,21 +27,33 @@ export const CurrencySelector: FC<CurrencySelector> = ({
   onClose,
   onQuery,
   onSelect
-}) => (
-  <Frame show={show}>
-    <Toolbar>
-      <BackButton onClick={onClose}>
-        <ArrowLeft></ArrowLeft>
-      </BackButton>
-      <Search value={query} onChange={e => onQuery(e.target.value)} />
-    </Toolbar>
-    <List>
-      {symbols.map(([symbol, name]) => (
-        <Item key={symbol} onClick={() => onSelect(symbol)}>
-          <CurrencySymbol>{symbol}</CurrencySymbol>
-          <CurrencyName>{name}</CurrencyName>
-        </Item>
-      ))}
-    </List>
-  </Frame>
-);
+}) => {
+  const ref = useRef(null);
+
+  useEffect(() => {
+    ref.current.focus();
+  });
+
+  return (
+    <Frame show={show}>
+      <Toolbar>
+        <BackButton onClick={onClose}>
+          <ArrowLeft></ArrowLeft>
+        </BackButton>
+        <Search
+          ref={ref}
+          value={query}
+          onChange={e => onQuery(e.target.value)}
+        />
+      </Toolbar>
+      <List>
+        {symbols.map(([symbol, name]) => (
+          <Item key={symbol} onClick={() => onSelect(symbol)}>
+            <CurrencySymbol>{symbol}</CurrencySymbol>
+            <CurrencyName>{name}</CurrencyName>
+          </Item>
+        ))}
+      </List>
+    </Frame>
+  );
+};
