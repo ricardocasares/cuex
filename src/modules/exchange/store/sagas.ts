@@ -11,6 +11,7 @@ import {
 import { ActionType, SetExchangeRate, SetTargetAmount } from "./models";
 import {
   getSymbol,
+  switchSymbols,
   setTargetAmount,
   setOriginAmount,
   setOriginSymbol,
@@ -59,13 +60,31 @@ export function* runFetchExchangeRate() {
 export function* runSetTargetSymbol() {
   yield put(getSymbol());
   const { payload } = yield take(ActionType.SET_SYMBOL);
+  const exchange = yield select(selector.exchange);
+
+  if (exchange.originSymbol === payload) {
+    yield put(switchSymbols());
+  }
+
   yield put(setTargetSymbol(payload));
 }
 
 export function* runSetOriginSymbol() {
   yield put(getSymbol());
   const { payload } = yield take(ActionType.SET_SYMBOL);
+  const exchange = yield select(selector.exchange);
+
+  if (exchange.targetSymbol === payload) {
+    yield put(switchSymbols());
+  }
+
   yield put(setOriginSymbol(payload));
+}
+
+export function* runSwitchSymbols() {
+  const exchange = yield select(selector.exchange);
+  yield put(setOriginSymbol(exchange.targetSymbol));
+  yield put(setTargetSymbol(exchange.originSymbol));
 }
 
 export function* runChangedSymbol() {
@@ -108,6 +127,10 @@ export function* watchGetOriginSymbol() {
   yield takeEvery(ActionType.GET_ORIGIN_SYMBOL, runSetOriginSymbol);
 }
 
+export function* watchSwitchSymbols() {
+  yield takeEvery(ActionType.SWITCH_SYMBOLS, runSwitchSymbols);
+}
+
 export function* watchChangedSymbol() {
   yield takeEvery(
     [ActionType.SET_ORIGIN_SYMBOL, ActionType.SET_TARGET_SYMBOL],
@@ -137,6 +160,7 @@ export function* watchRequestExecuteExchange() {
 
 export const sagas = [
   watchChangedSymbol,
+  watchSwitchSymbols,
   watchGetOriginSymbol,
   watchGetTargetSymbol,
   runExchangeRateInterval,

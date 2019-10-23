@@ -1,15 +1,15 @@
 import React from "react";
 import styled from "@emotion/styled";
 import { Toolbar } from "@/components/Toolbar";
-import { Switch } from "@/components/Switch";
 import { Spacer } from "@/components/Spacer";
 import { Footer } from "@/components/Footer";
-import { CurrencySelector } from "@/modules/symbols/containers/CurrencySelector";
+import { Switch } from "@/modules/exchange/containers/Switch";
 import { Conversion } from "@/modules/exchange/containers/Conversion";
 import { OriginAmount } from "@/modules/exchange/containers/OriginAmount";
 import { TargetAmount } from "@/modules/exchange/containers/TargetAmount";
 import { OriginBalance } from "@/modules/exchange/containers/OriginBalance";
 import { TargetBalance } from "@/modules/exchange/containers/TargetBalance";
+import { CurrencySelector } from "@/modules/symbols/containers/CurrencySelector";
 import { OriginSymbolButton } from "@/modules/exchange/containers/OriginSymbolButton";
 import { TargetSymbolButton } from "@/modules/exchange/containers/TargetSymbolButton";
 import { ExchangeButton } from "@/modules/exchange/containers/ExchangeButton";
@@ -41,7 +41,7 @@ export default () => (
       <OriginBalance />
     </CurrencyBlock>
     <Toolbar>
-      <Switch onClick={console.log} />
+      <Switch />
       <Conversion />
       <Spacer x={10} />
     </Toolbar>

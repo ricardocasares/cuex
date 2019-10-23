@@ -16,7 +16,8 @@ import {
   FetchExchangeRate,
   SetExchangeRate,
   State,
-  RequestExecuteExchange
+  RequestExecuteExchange,
+  SwitchSymbols
 } from "./models";
 
 export const getSymbol = (): GetSymbol => ({
@@ -59,6 +60,10 @@ export const setOriginSymbol = (payload: string): SetOriginSymbol => ({
 export const setTargetSymbol = (payload: string): SetTargetSymbol => ({
   type: ActionType.SET_TARGET_SYMBOL,
   payload
+});
+
+export const switchSymbols = (): SwitchSymbols => ({
+  type: ActionType.SWITCH_SYMBOLS
 });
 
 export const changedOriginAmount = (payload: number): ChangedOriginAmount => ({
