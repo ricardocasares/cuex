@@ -8,11 +8,4 @@ export const Input = styled.input`
   text-align: right;
   outline: none;
   width: 100%;
-  -moz-appearance: textfield;
-
-  &::-webkit-inner-spin-button,
-  &::-webkit-outer-spin-button {
-    -webkit-appearance: none;
-    margin: 0;
-  }
 `;

@@ -17,9 +17,9 @@ export const reducer: Reducer<State, Actions> = (state = initial, action) => {
     case ActionType.SET_EXCHANGE_RATE:
       return { ...state, rate: action.payload };
     case ActionType.SET_ORIGIN_AMOUNT:
-      return { ...state, originAmount: action.payload || 0 };
+      return { ...state, originAmount: action.payload };
     case ActionType.SET_TARGET_AMOUNT:
-      return { ...state, targetAmount: action.payload || 0 };
+      return { ...state, targetAmount: action.payload };
     case ActionType.SET_ORIGIN_SYMBOL:
       return { ...state, originSymbol: action.payload };
     case ActionType.SET_TARGET_SYMBOL:
