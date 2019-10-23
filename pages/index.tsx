@@ -1,8 +1,10 @@
 import React from "react";
-import styled from "@emotion/styled";
 import { Toolbar } from "@/components/Toolbar";
 import { Spacer } from "@/components/Spacer";
 import { Footer } from "@/components/Footer";
+import { Layout } from "@/components/Layout";
+import { CurrencyBlock } from "@/components/CurrencyBlock";
+import { CurrencyToolbar } from "@/components/CurrencyToolbar";
 import { Switch } from "@/modules/exchange/containers/Switch";
 import { Conversion } from "@/modules/exchange/containers/Conversion";
 import { OriginAmount } from "@/modules/exchange/containers/OriginAmount";
@@ -14,24 +16,8 @@ import { OriginSymbolButton } from "@/modules/exchange/containers/OriginSymbolBu
 import { TargetSymbolButton } from "@/modules/exchange/containers/TargetSymbolButton";
 import { ExchangeButton } from "@/modules/exchange/containers/ExchangeButton";
 
-export const CurrencyBlock = styled.div`
-  display: flex;
-  flex-direction: column;
-  padding: 20px;
-`;
-
-export const CurrencyToolbar = styled.div`
-  display: flex;
-`;
-
-export const CurrencyExchanger = styled.div`
-  display: flex;
-  flex-direction: column;
-  height: 100%;
-`;
-
 export default () => (
-  <CurrencyExchanger>
+  <Layout>
     <CurrencySelector />
     <CurrencyBlock>
       <CurrencyToolbar>
@@ -55,5 +41,5 @@ export default () => (
     <Footer>
       <ExchangeButton>Exchange</ExchangeButton>
     </Footer>
-  </CurrencyExchanger>
+  </Layout>
 );
