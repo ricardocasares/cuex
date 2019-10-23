@@ -20,7 +20,7 @@ import {
   executeExchange,
   fetchExchangeRate
 } from "./actions";
-import { getExchangeRate } from "../api";
+import { fetchEchangeRate } from "../api";
 import * as selector from "./selectors";
 
 const FETCH_RATE_INTERVAL = 10000;
@@ -44,11 +44,10 @@ export function* runTargetAmountChanged(action: SetTargetAmount) {
 export function* runFetchExchangeRate() {
   try {
     const exchange = yield select(selector.exchange);
-    const payload = yield call(
-      getExchangeRate,
-      exchange.originSymbol,
-      exchange.targetSymbol
-    );
+    const payload = yield call(fetchEchangeRate, {
+      base: exchange.originSymbol,
+      symbols: exchange.targetSymbol
+    });
 
     yield put(setExchangeRate(payload));
   } catch (err) {
@@ -102,7 +101,6 @@ export function* runSetAmountByDirection() {
 }
 
 export function* runExecuteExchange() {
-  console.log("hey");
   yield put(executeExchange(yield select(selector.exchange)));
 }
 

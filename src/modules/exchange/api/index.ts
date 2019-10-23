@@ -1,6 +1,9 @@
-function random() {
-  const rates = [2, 4];
-  return rates[Math.floor(Math.random() * rates.length)];
-}
+import { encode } from "querystring";
 
-export const getExchangeRate = async (base: string, target: string) => 0.9;
+const API = process.env.API;
+const KEY = process.env.API_KEY;
+
+export const fetchEchangeRate = (params: Record<string, string> = {}) =>
+  fetch(`${API}?${encode({ ...params, access_key: KEY })}`)
+    .then(r => r.json())
+    .then(data => data.rates[params.symbols]);

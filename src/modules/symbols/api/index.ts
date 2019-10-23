@@ -1,5 +1,4 @@
-export const fetchCurrencies = async () => [
-  ["USD", "United States Dollar"],
-  ["EUR", "Euro"],
-  ["GBP", "British Pound Sterling"]
-];
+export const fetchCurrencies = async (): Promise<[string, string][]> =>
+  fetch("/api/symbols")
+    .then(r => r.json())
+    .then(Object.entries);

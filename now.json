@@ -1,5 +1,11 @@
 {
   "version": 2,
   "name": "cuex",
-  "alias": ["cuex.hidden.now.sh"]
+  "alias": ["cuex.hidden.now.sh"],
+  "build": {
+    "env": {
+      "API": "@cuex-api",
+      "API_KEY": "@cuex-api-key"
+    }
+  }
 }

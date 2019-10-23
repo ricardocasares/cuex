@@ -7,7 +7,7 @@ import * as actions from "./actions";
 import * as selectors from "./selectors";
 import { sagas } from "./sagas";
 import { reducer, initial as exchange } from "./reducer";
-import { getExchangeRate } from "../api";
+import { fetchEchangeRate } from "../api";
 
 function* integration() {
   yield all([...sagas]);
@@ -22,7 +22,7 @@ test("starting interval and fetch a rate", () =>
   expectSaga(integration)
     .withReducer(reducer)
     .provide([
-      [call.fn(getExchangeRate), 2],
+      [call.fn(fetchEchangeRate), 2],
       [select(selectors.exchange), exchange]
     ])
     .put(actions.fetchExchangeRate())
@@ -72,7 +72,7 @@ test("updating origin symbol fetches new rate", () =>
   expectSaga(integration)
     .withReducer(reducer)
     .provide([
-      [call.fn(getExchangeRate), 2],
+      [call.fn(fetchEchangeRate), 2],
       [select(selectors.rate), 2],
       [select(selectors.exchange), exchange]
     ])
@@ -92,7 +92,7 @@ test("updating target symbol fetches new rate", () =>
   expectSaga(integration)
     .withReducer(reducer)
     .provide([
-      [call.fn(getExchangeRate), 2],
+      [call.fn(fetchEchangeRate), 2],
       [select(selectors.rate), 2],
       [select(selectors.exchange), exchange]
     ])
