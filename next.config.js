@@ -6,7 +6,6 @@ const withBundleAnalyzer = require("@next/bundle-analyzer")({
 
 module.exports = withBundleAnalyzer({
   env: {
-    API: process.env.API,
-    API_KEY: process.env.API_KEY
+    API: process.env.API
   }
 });
