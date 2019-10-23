@@ -1,5 +1,6 @@
 import { FC } from "react";
 import { Paragraph } from "./styles";
+import { format } from "@/helpers/numbers";
 
 export type Balance = {
   amount: number;
@@ -9,7 +10,6 @@ export type Balance = {
 
 export const Balance: FC<Balance> = ({ currency, amount, overdraft }) => (
   <Paragraph overdraft={overdraft}>
-    Balance: {currency}
-    {amount}
+    Balance: {format(amount, currency)}
   </Paragraph>
 );

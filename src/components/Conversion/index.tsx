@@ -1,5 +1,6 @@
 import { FC } from "react";
 import { Icon, Button } from "./styles";
+import { format } from "@/helpers/numbers";
 
 export type Conversion = {
   rate: number;
@@ -13,7 +14,6 @@ export const Conversion: FC<Conversion> = ({
   targetSymbol
 }) => (
   <Button>
-    <Icon /> {originSymbol}1 = {targetSymbol}
-    {rate}
+    <Icon /> {format(1, originSymbol)} = {format(rate, targetSymbol)}
   </Button>
 );

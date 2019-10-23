@@ -5,7 +5,6 @@ export const Icon = styled(TrendingUp)`
   color: #0070f3;
   vertical-align: text-bottom;
   height: 16px;
-  margin-right: 5px;
 `;
 
 export const Button = styled.button`
