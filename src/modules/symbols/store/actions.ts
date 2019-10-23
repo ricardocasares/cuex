@@ -6,7 +6,9 @@ import {
   SelectSymbol,
   FetchSymbols,
   RequestSymbols,
-  FetchErrorSymbols
+  FetchErrorSymbols,
+  SetQuery,
+  QueryChanged
 } from "./models";
 
 export const fetchSymbols = (): FetchSymbols => ({
@@ -34,5 +36,15 @@ export const showSymbols = (payload: boolean): ShowSymbols => ({
 
 export const fetchErrorSymbols = (payload: Error): FetchErrorSymbols => ({
   type: ActionType.FETCH_ERROR_SYMBOLS,
+  payload
+});
+
+export const setQuery = (payload: string): SetQuery => ({
+  type: ActionType.SET_QUERY,
+  payload
+});
+
+export const queryChanged = (payload: string): QueryChanged => ({
+  type: ActionType.QUERY_CHANGED,
   payload
 });

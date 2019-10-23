@@ -1,10 +1,10 @@
 import { put, fork, call, takeLatest } from "redux-saga/effects";
-import { ActionType } from "./models";
-import { setSymbols, showSymbols } from "./actions";
-import { getSymbols } from "../api";
+import { ActionType, QueryChanged } from "./models";
+import { setSymbols, showSymbols, setQuery } from "./actions";
+import { fetchCurrencies } from "../api";
 
 export function* runSetSymbols() {
-  const symbols = yield call(getSymbols);
+  const symbols = yield call(fetchCurrencies);
   yield put(setSymbols(symbols));
 }
 
@@ -13,7 +13,12 @@ export function* runShowSymbols() {
 }
 
 export function* runHideSymbols() {
+  yield put(setQuery(""));
   yield put(showSymbols(false));
+}
+
+export function* runSetQuery(action: QueryChanged) {
+  yield put(setQuery(action.payload));
 }
 
 export function* watchFetchSymbols() {
@@ -28,8 +33,13 @@ export function* watchSelectSymbol() {
   yield takeLatest(ActionType.SELECT_SYMBOL, runHideSymbols);
 }
 
+export function* watchQueryChanged() {
+  yield takeLatest(ActionType.QUERY_CHANGED, runSetQuery);
+}
+
 export const sagas = [
   watchFetchSymbols,
   watchSelectSymbol,
+  watchQueryChanged,
   watchRequestSymbols
 ].map(fork);

@@ -4,7 +4,7 @@ import { Toolbar } from "@/components/Toolbar";
 import { Switch } from "@/components/Switch";
 import { Spacer } from "@/components/Spacer";
 import { Footer } from "@/components/Footer";
-import { Selector } from "@/modules/symbols/containers/Selector";
+import { CurrencySelector } from "@/modules/symbols/containers/CurrencySelector";
 import { Conversion } from "@/modules/exchange/containers/Conversion";
 import { OriginAmount } from "@/modules/exchange/containers/OriginAmount";
 import { TargetAmount } from "@/modules/exchange/containers/TargetAmount";
@@ -32,13 +32,13 @@ export const CurrencyExchanger = styled.div`
 
 export default () => (
   <CurrencyExchanger>
-    <Selector />
+    <CurrencySelector />
     <CurrencyBlock>
       <CurrencyToolbar>
         <OriginSymbolButton />
         <OriginAmount />
       </CurrencyToolbar>
-      <OriginBalance></OriginBalance>
+      <OriginBalance />
     </CurrencyBlock>
     <Toolbar>
       <Switch onClick={console.log} />
@@ -50,7 +50,7 @@ export default () => (
         <TargetSymbolButton />
         <TargetAmount />
       </CurrencyToolbar>
-      <TargetBalance></TargetBalance>
+      <TargetBalance />
     </CurrencyBlock>
     <Footer>
       <ExchangeButton>Exchange</ExchangeButton>

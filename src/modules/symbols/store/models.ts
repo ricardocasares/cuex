@@ -1,7 +1,7 @@
 import { Action } from "redux";
 
-export type State = { show: boolean; symbols: Symbols };
-export type Symbols = Record<string, string>;
+export type State = { show: boolean; query: string; symbols: Symbols };
+export type Symbols = [string, string][];
 
 export enum ActionType {
   FETCH_SYMBOLS = "@cuex/symbols/FETCH_SYMBOLS",
@@ -9,7 +9,9 @@ export enum ActionType {
   SELECT_SYMBOL = "@cuex/symbols/SELECT_SYMBOL",
   REQUEST_SYMBOLS = "@cuex/symbols/REQUEST_SYMBOLS",
   SHOW_SYMBOLS = "@cuex/symbols/SHOW_SYMBOLS",
-  FETCH_ERROR_SYMBOLS = "@cuex/symbols/FETCH_ERROR_SYMBOLS"
+  FETCH_ERROR_SYMBOLS = "@cuex/symbols/FETCH_ERROR_SYMBOLS",
+  SET_QUERY = "@cuex/symbols/SET_QUERY",
+  QUERY_CHANGED = "@cuex/symbols/QUERY_CHANGED"
 }
 
 export interface FetchSymbols extends Action<ActionType.FETCH_SYMBOLS> {}
@@ -32,7 +34,17 @@ export interface FetchErrorSymbols
   readonly payload: Error;
 }
 
+export interface SetQuery extends Action<ActionType.SET_QUERY> {
+  readonly payload: string;
+}
+
+export interface QueryChanged extends Action<ActionType.QUERY_CHANGED> {
+  readonly payload: string;
+}
+
 export type Actions =
+  | SetQuery
+  | QueryChanged
   | SetSymbols
   | ShowSymbols
   | FetchSymbols
