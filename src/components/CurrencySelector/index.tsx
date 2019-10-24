@@ -14,7 +14,7 @@ import {
 export type CurrencySelector = {
   show: boolean;
   query: string;
-  symbols: [[string, string]];
+  symbols: [string, string][];
   onClose: () => void;
   onQuery: (query: string) => void;
   onSelect: (symbol: string) => void;
@@ -37,18 +37,23 @@ export const CurrencySelector: FC<CurrencySelector> = ({
   return (
     <Frame show={show}>
       <Toolbar>
-        <BackButton onClick={onClose}>
+        <BackButton onClick={onClose} data-testid="back-button">
           <ArrowLeft></ArrowLeft>
         </BackButton>
         <Search
           ref={ref}
           value={query}
           onChange={e => onQuery(e.target.value)}
+          data-testid="search-input"
         />
       </Toolbar>
       <List>
         {symbols.map(([symbol, name]) => (
-          <Item key={symbol} onClick={() => onSelect(symbol)}>
+          <Item
+            data-testid={symbol}
+            key={symbol}
+            onClick={() => onSelect(symbol)}
+          >
             <CurrencySymbol>{symbol}</CurrencySymbol>
             <CurrencyName>{name}</CurrencyName>
           </Item>
