@@ -37,6 +37,7 @@
     "redux-saga": "^1.1.1"
   },
   "devDependencies": {
+    "@testing-library/react": "^9.3.0",
     "@types/jest": "^24.0.19",
     "@types/next-redux-saga": "^3.0.1",
     "@types/node": "^12.11.5",
