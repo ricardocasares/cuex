@@ -14,6 +14,6 @@ export const Conversion: FC<Conversion> = ({
   targetSymbol
 }) => (
   <Button>
-    <Icon /> {format(1, originSymbol)} = {format(rate, targetSymbol)}
+    <Icon /> {format(1, originSymbol, 5)} = {format(rate, targetSymbol)}
   </Button>
 );
