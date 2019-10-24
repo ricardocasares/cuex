@@ -13,7 +13,10 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "bundle": "ANALYZE=true next build"
+    "test": "jest",
+    "test:watch": "jest --watch",
+    "test:cover": "jest --coverage",
+    "bundlesize": "ANALYZE=true next build"
   },
   "bugs": {
     "url": "https://github.com/ricardocasares/cuex/issues"
