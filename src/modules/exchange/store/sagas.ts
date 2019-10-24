@@ -19,7 +19,8 @@ import {
   setExchangeRate,
   executeExchange,
   fetchExchangeRate,
-  fetchErrorExchangeRate
+  fetchErrorExchangeRate,
+  symbolsChanged
 } from "./actions";
 import { fetchEchangeRate } from "../api";
 import * as selector from "./selectors";
@@ -67,6 +68,7 @@ export function* runSetTargetSymbol() {
     yield put(switchSymbols());
   } else {
     yield put(setTargetSymbol(payload));
+    yield put(symbolsChanged());
   }
 }
 
@@ -79,6 +81,7 @@ export function* runSetOriginSymbol() {
     yield put(switchSymbols());
   } else {
     yield put(setOriginSymbol(payload));
+    yield put(symbolsChanged());
   }
 }
 
@@ -86,6 +89,7 @@ export function* runSwitchSymbols() {
   const exchange = yield select(selector.exchange);
   yield put(setOriginSymbol(exchange.targetSymbol));
   yield put(setTargetSymbol(exchange.originSymbol));
+  yield put(symbolsChanged());
 }
 
 export function* runChangedSymbol() {
@@ -132,10 +136,7 @@ export function* watchSwitchSymbols() {
 }
 
 export function* watchChangedSymbol() {
-  yield takeEvery(
-    [ActionType.SET_ORIGIN_SYMBOL, ActionType.SET_TARGET_SYMBOL],
-    runChangedSymbol
-  );
+  yield takeEvery(ActionType.SYMBOLS_CHANGED, runChangedSymbol);
 }
 
 export function* watchChangedOriginAmount() {

@@ -27,7 +27,8 @@ export enum ActionType {
   SET_EXCHANGE_RATE = "@cuex/exchange/SET_EXCHANGE_RATE",
   FETCH_ERROR_EXCHAGE_RATE = "@cuex/exchange/FETCH_ERROR_EXCHAGE_RATE",
   START_RATE_INTERVAL = "@cuex/exchange/START_RATE_INTERVAL",
-  SWITCH_SYMBOLS = "@cuex/exchange/SWITCH_SYMBOLS"
+  SWITCH_SYMBOLS = "@cuex/exchange/SWITCH_SYMBOLS",
+  SYMBOLS_CHANGED = "@cuex/exchange/SYMBOLS_CHANGED"
 }
 
 export interface GetSymbol extends Action<ActionType.GET_SYMBOL> {}
@@ -46,6 +47,7 @@ export interface SetTargetSymbol extends Action<ActionType.SET_TARGET_SYMBOL> {
 }
 
 export interface SwitchSymbols extends Action<ActionType.SWITCH_SYMBOLS> {}
+export interface SymbolsChanged extends Action<ActionType.SYMBOLS_CHANGED> {}
 
 export interface SetDirection extends Action<ActionType.SET_DIRECTION> {
   readonly payload: boolean;
@@ -95,6 +97,7 @@ export type Actions =
   | GetSymbol
   | SetSymbol
   | SetDirection
+  | SymbolsChanged
   | SetExchangeRate
   | SetOriginAmount
   | SetTargetAmount
