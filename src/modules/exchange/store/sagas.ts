@@ -18,7 +18,8 @@ import {
   setTargetSymbol,
   setExchangeRate,
   executeExchange,
-  fetchExchangeRate
+  fetchExchangeRate,
+  fetchErrorExchangeRate
 } from "./actions";
 import { fetchEchangeRate } from "../api";
 import * as selector from "./selectors";
@@ -51,8 +52,9 @@ export function* runFetchExchangeRate() {
 
     yield put(setExchangeRate(payload));
   } catch (err) {
+    // @TODO Handle errors
     // @TODO Use AbortController for cancellation
-    console.warn("executeFetchExchangeRate unhandled");
+    yield put(fetchErrorExchangeRate(err));
   }
 }
 
@@ -63,9 +65,9 @@ export function* runSetTargetSymbol() {
 
   if (exchange.originSymbol === payload) {
     yield put(switchSymbols());
+  } else {
+    yield put(setTargetSymbol(payload));
   }
-
-  yield put(setTargetSymbol(payload));
 }
 
 export function* runSetOriginSymbol() {
@@ -75,9 +77,9 @@ export function* runSetOriginSymbol() {
 
   if (exchange.targetSymbol === payload) {
     yield put(switchSymbols());
+  } else {
+    yield put(setOriginSymbol(payload));
   }
-
-  yield put(setOriginSymbol(payload));
 }
 
 export function* runSwitchSymbols() {

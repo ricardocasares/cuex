@@ -1,11 +1,20 @@
 import { put, fork, call, takeLatest } from "redux-saga/effects";
 import { ActionType, QueryChanged } from "./models";
-import { setSymbols, showSymbols, setQuery } from "./actions";
+import {
+  setSymbols,
+  showSymbols,
+  fetchErrorSymbols,
+  setQuery
+} from "./actions";
 import { fetchCurrencies } from "../api";
 
 export function* runSetSymbols() {
-  const symbols = yield call(fetchCurrencies);
-  yield put(setSymbols(symbols));
+  try {
+    const symbols = yield call(fetchCurrencies);
+    yield put(setSymbols(symbols));
+  } catch (err) {
+    yield put(fetchErrorSymbols(err));
+  }
 }
 
 export function* runShowSymbols() {

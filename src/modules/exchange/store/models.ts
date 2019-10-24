@@ -79,6 +79,11 @@ export interface StartRateInterval
 export interface FetchExchangeRate
   extends Action<ActionType.FETCH_EXCHANGE_RATE> {}
 
+export interface FetchErrorExchangeRate
+  extends Action<ActionType.FETCH_ERROR_EXCHAGE_RATE> {
+  readonly payload: Error;
+}
+
 export interface RequestExecuteExchange
   extends Action<ActionType.REQUEST_EXECUTE_EXCHANGE> {}
 

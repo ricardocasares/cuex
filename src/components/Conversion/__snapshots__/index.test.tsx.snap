@@ -1,0 +1,139 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Conversion renders correctly 1`] = `
+.emotion-2 {
+  color: #0070f3;
+  background: #fff;
+  padding: 5px 10px;
+  border: 2px solid #f2f4f3;
+  text-align: center;
+  border-radius: 50px;
+  font-size: 14px;
+}
+
+.emotion-0 {
+  color: #0070f3;
+  vertical-align: text-bottom;
+  height: 16px;
+}
+
+<button
+  className="emotion-2 emotion-3"
+>
+  <svg
+    className="emotion-0 emotion-1"
+    fill="none"
+    height="24"
+    stroke="currentColor"
+    strokeLinecap="round"
+    strokeLinejoin="round"
+    strokeWidth="2"
+    viewBox="0 0 24 24"
+    width="24"
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    <polyline
+      points="23 6 13.5 15.5 8.5 10.5 1 18"
+    />
+    <polyline
+      points="17 6 23 6 23 12"
+    />
+  </svg>
+   
+  $1.00
+   = 
+  €2.00
+</button>
+`;
+
+exports[`Conversion renders different symbols 1`] = `
+.emotion-2 {
+  color: #0070f3;
+  background: #fff;
+  padding: 5px 10px;
+  border: 2px solid #f2f4f3;
+  text-align: center;
+  border-radius: 50px;
+  font-size: 14px;
+}
+
+.emotion-0 {
+  color: #0070f3;
+  vertical-align: text-bottom;
+  height: 16px;
+}
+
+<button
+  className="emotion-2 emotion-3"
+>
+  <svg
+    className="emotion-0 emotion-1"
+    fill="none"
+    height="24"
+    stroke="currentColor"
+    strokeLinecap="round"
+    strokeLinejoin="round"
+    strokeWidth="2"
+    viewBox="0 0 24 24"
+    width="24"
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    <polyline
+      points="23 6 13.5 15.5 8.5 10.5 1 18"
+    />
+    <polyline
+      points="17 6 23 6 23 12"
+    />
+  </svg>
+   
+  ¥1
+   = 
+  £2.00
+</button>
+`;
+
+exports[`Conversion renders max 5 decimals 1`] = `
+.emotion-2 {
+  color: #0070f3;
+  background: #fff;
+  padding: 5px 10px;
+  border: 2px solid #f2f4f3;
+  text-align: center;
+  border-radius: 50px;
+  font-size: 14px;
+}
+
+.emotion-0 {
+  color: #0070f3;
+  vertical-align: text-bottom;
+  height: 16px;
+}
+
+<button
+  className="emotion-2 emotion-3"
+>
+  <svg
+    className="emotion-0 emotion-1"
+    fill="none"
+    height="24"
+    stroke="currentColor"
+    strokeLinecap="round"
+    strokeLinejoin="round"
+    strokeWidth="2"
+    viewBox="0 0 24 24"
+    width="24"
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    <polyline
+      points="23 6 13.5 15.5 8.5 10.5 1 18"
+    />
+    <polyline
+      points="17 6 23 6 23 12"
+    />
+  </svg>
+   
+  $1.00
+   = 
+  €2.22222
+</button>
+`;

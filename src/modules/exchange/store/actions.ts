@@ -17,7 +17,8 @@ import {
   SetExchangeRate,
   State,
   RequestExecuteExchange,
-  SwitchSymbols
+  SwitchSymbols,
+  FetchErrorExchangeRate
 } from "./models";
 
 export const getSymbol = (): GetSymbol => ({
@@ -82,6 +83,13 @@ export const startRateInterval = (): StartRateInterval => ({
 
 export const fetchExchangeRate = (): FetchExchangeRate => ({
   type: ActionType.FETCH_EXCHANGE_RATE
+});
+
+export const fetchErrorExchangeRate = (
+  payload: Error
+): FetchErrorExchangeRate => ({
+  type: ActionType.FETCH_ERROR_EXCHAGE_RATE,
+  payload
 });
 
 export const setExchangeRate = (payload: number): SetExchangeRate => ({

@@ -10,8 +10,7 @@ exports[`Balance handles expressions 1`] = `
   className="emotion-0 emotion-1"
 >
   Balance: 
-  USD
-  120.52
+  $120.52
 </p>
 `;
 
@@ -25,8 +24,7 @@ exports[`Balance handles floats 1`] = `
   className="emotion-0 emotion-1"
 >
   Balance: 
-  USD
-  120.52
+  $120.52
 </p>
 `;
 
@@ -40,8 +38,7 @@ exports[`Balance handles integers 1`] = `
   className="emotion-0 emotion-1"
 >
   Balance: 
-  USD
-  120
+  $120.00
 </p>
 `;
 
@@ -55,7 +52,6 @@ exports[`Balance renders styles when overdraft 1`] = `
   className="emotion-0 emotion-1"
 >
   Balance: 
-  USD
-  120.52
+  $120.52
 </p>
 `;
