@@ -31,7 +31,7 @@ export default () => (
       <Conversion />
       <Spacer x={10} />
     </Toolbar>
-    <CurrencyBlock style={{ background: "#f2f4f3" }}>
+    <CurrencyBlock dark>
       <CurrencyToolbar>
         <TargetSymbolButton />
         <TargetAmount />
