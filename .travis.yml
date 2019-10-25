@@ -7,6 +7,7 @@ install:
 script:
   - npm -v
   - node -v
+  - npm run-script build
   - npm run-script test:cover
   - codecov
 
