@@ -22,7 +22,7 @@
     "url": "https://github.com/ricardocasares/cuex/issues"
   },
   "dependencies": {
-    "@emotion/core": "^10.0.21",
+    "@emotion/core": "^10.0.22",
     "@emotion/styled": "^10.0.17",
     "@next/bundle-analyzer": "^9.1.1",
     "emotion-normalize": "^10.1.0",
