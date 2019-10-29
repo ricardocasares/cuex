@@ -24,6 +24,7 @@ import {
 } from "./actions";
 import { fetchEchangeRate } from "../api";
 import * as selector from "./selectors";
+import { twoDecimals } from "@/helpers/numbers";
 
 const FETCH_RATE_INTERVAL = 10000;
 
@@ -34,13 +35,13 @@ const FETCH_RATE_INTERVAL = 10000;
 export function* runOriginAmountChanged(action: SetExchangeRate) {
   const rate = yield select(selector.rate);
   yield put(setOriginAmount(action.payload));
-  yield put(setTargetAmount(rate * action.payload));
+  yield put(setTargetAmount(twoDecimals(rate * action.payload)));
 }
 
 export function* runTargetAmountChanged(action: SetTargetAmount) {
   const rate = yield select(selector.rate);
   yield put(setTargetAmount(action.payload));
-  yield put(setOriginAmount(action.payload / rate));
+  yield put(setOriginAmount(twoDecimals(action.payload / rate)));
 }
 
 export function* runFetchExchangeRate() {
@@ -100,9 +101,13 @@ export function* runSetAmountByDirection() {
   const exchange = yield select(selector.exchange);
 
   if (exchange.direction) {
-    yield put(setTargetAmount(exchange.originAmount * exchange.rate));
+    yield put(
+      setTargetAmount(twoDecimals(exchange.originAmount * exchange.rate))
+    );
   } else {
-    yield put(setOriginAmount(exchange.targetAmount / exchange.rate));
+    yield put(
+      setOriginAmount(twoDecimals(exchange.targetAmount / exchange.rate))
+    );
   }
 }
 

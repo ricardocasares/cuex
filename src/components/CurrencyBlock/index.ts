@@ -1,5 +1,5 @@
 import styled from "@emotion/styled";
-import { is } from "@/css/helpers"
+import { is } from "@/css/helpers";
 
 export type CurrencyBlock = {
   dark?: boolean;
