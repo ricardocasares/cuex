@@ -23,7 +23,7 @@
   },
   "dependencies": {
     "@emotion/core": "^10.0.22",
-    "@emotion/styled": "^10.0.22",
+    "@emotion/styled": "^10.0.23",
     "@next/bundle-analyzer": "^9.1.1",
     "emotion-normalize": "^10.1.0",
     "fast-memoize": "^2.5.1",
