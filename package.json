@@ -40,7 +40,7 @@
     "redux-saga": "^1.1.1"
   },
   "devDependencies": {
-    "@testing-library/react": "^9.3.0",
+    "@testing-library/react": "^9.3.1",
     "@types/jest": "^24.0.21",
     "@types/next-redux-saga": "^3.0.1",
     "@types/node": "^12.12.0",
