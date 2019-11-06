@@ -55,6 +55,6 @@
     "jest-emotion": "^10.0.17",
     "react-test-renderer": "^16.11.0",
     "redux-saga-test-plan": "^4.0.0-rc.3",
-    "typescript": "^3.6.4"
+    "typescript": "^3.7.2"
   }
 }
