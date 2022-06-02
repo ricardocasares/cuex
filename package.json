@@ -41,7 +41,7 @@
   },
   "devDependencies": {
     "@testing-library/react": "^9.5.0",
-    "@types/jest": "^25.1.4",
+    "@types/jest": "^28.1.0",
     "@types/next-redux-saga": "^3.0.2",
     "@types/node": "^13.9.0",
     "@types/react": "^16.9.23",
@@ -51,7 +51,7 @@
     "babel-plugin-emotion": "^10.0.29",
     "babel-plugin-module-resolver": "^4.0.0",
     "dotenv": "^8.2.0",
-    "jest": "^25.1.0",
+    "jest": "^28.1.0",
     "jest-emotion": "^10.0.27",
     "react-test-renderer": "^16.13.0",
     "redux-saga-test-plan": "^4.0.0-rc.3",
